@@ -2,7 +2,7 @@
 ## Synopsis
 
 Frontend web application using AngularJS to consume a REST API located here:
-https://github.com/dnaismyth/flow_frontend
+https://github.com/dnaismyth/flow_backend
 
 ## Motivation
 
