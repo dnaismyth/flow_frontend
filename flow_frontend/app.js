@@ -1,1 +1,0 @@
-var flowApp = angular.module("flowApp", []);
