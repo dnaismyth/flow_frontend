@@ -6,16 +6,16 @@ flowApp.config(function ($routeProvider){
     $routeProvider
 
     .when('/', {
-            templateUrl: 'pages/login.html',
+            templateUrl: 'views/login.html',
             controller:  'secureCtrl'
     }).when('/settings',{
-            templateUrl: 'pages/settings.html',
+            templateUrl: 'views/settings.html',
             controller: 'secondController'
     }).when('/main', {
-            templateUrl: 'pages/main.html',
+            templateUrl: 'views/main.html',
             controller: 'secondController'
     }).when('/profile', {
-            templateUrl: 'pages/profile.html',
+            templateUrl: 'views/profile.html',
             controller: 'secondController'
     });
 });
