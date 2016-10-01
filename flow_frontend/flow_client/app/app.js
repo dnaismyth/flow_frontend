@@ -1,5 +1,5 @@
 
-var flowApp = angular.module('flowApp', ['ngResource','ui.router','ngCookies']);
+var flowApp = angular.module('flowApp', ['ngResource','ui.router','ngCookies', 'ngStorage']);
 
 flowApp.config(function ($stateProvider, $urlRouterProvider){
 
@@ -10,7 +10,7 @@ flowApp.config(function ($stateProvider, $urlRouterProvider){
             .state('main', {
                 url: '/main',
                 templateUrl:'views/main.html',
-                controller: 'secondController'
+                controller: 'profile'
             })
             .state('login', {
                 url: '/',
@@ -19,8 +19,8 @@ flowApp.config(function ($stateProvider, $urlRouterProvider){
             })
             .state('profile', {
                 url:'/profile',
-                templateUrl:'views/profile.html',
-                controller:'secondController'
+                templateUrl:'views/profile.html'
+                //controller:'profile'
             })
             .state('settings', {
                 url:'/settings',
@@ -73,6 +73,8 @@ flowApp.controller('secureCtrl',
                 $http.defaults.headers.common.Authorization =
                     'Bearer ' + data.data.access_token;
                 $cookies.put("access_token", data.data.access_token);
+                console.log("This is my cookie" + $cookies.get("access_token"));
+                //console.log(data.data.access_token);
                 window.location.href="#/main";  // after login, enter into main feed
             });
         }
@@ -82,6 +84,26 @@ flowApp.controller('firstController', ['$scope', '$log', function($scope, $log){
 
 }]);
 
+
+// Temp controllers for testing purposes
 flowApp.controller('secondController', ['$scope', '$log', function($scope, $log){
 
 }]);
+
+
+// Get the current logged in user
+flowApp.controller('profile', function($scope, $http, $localStorage){
+    $http.get('http://localhost:8080/api/me').
+        then(function(response){
+            //$scope.user = response.data;
+            $localStorage.user = response.data;
+            console.log($localStorage.user.username);
+            //console.log($rootScope.user.username);
+            //$cookies.put("user", $rootScope.user);  // store the current user into a cookie
+    });
+
+        $scope.data = $localStorage.user;
+        console.log("This is the current user: " + $localStorage.user.username);
+
+});
+
