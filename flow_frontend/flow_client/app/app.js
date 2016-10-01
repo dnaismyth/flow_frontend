@@ -5,13 +5,19 @@ flowApp.config(function ($routeProvider){
 
     $routeProvider
 
-    .when('/login', {
-        templateUrl: 'pages/login.html',
-        controller:  'secureCtrl'
-    }).when('/second',{
-            templateUrl: 'pages/second.html',
+    .when('/', {
+            templateUrl: 'pages/login.html',
+            controller:  'secureCtrl'
+    }).when('/settings',{
+            templateUrl: 'pages/settings.html',
             controller: 'secondController'
-        })
+    }).when('/main', {
+            templateUrl: 'pages/main.html',
+            controller: 'secondController'
+    }).when('/profile', {
+            templateUrl: 'pages/profile.html',
+            controller: 'secondController'
+    });
 });
 
 flowApp.controller('Hello', function($scope, $http) {
@@ -45,7 +51,7 @@ flowApp.controller('secureCtrl',
                 $http.defaults.headers.common.Authorization =
                     'Bearer ' + data.data.access_token;
                 $cookies.put("access_token", data.data.access_token);
-                window.location.href="#/second";
+                window.location.href="#/main";  // after login, enter into main feed
             });
         }
     });
