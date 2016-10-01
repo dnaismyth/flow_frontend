@@ -1,27 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html ng-app="flowApp">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>-->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular-cookies.min.js"></script>
 
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
-
-
-
-    <script type="text/javascript" src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
 
     <title>Untitled</title>
+    <script src="app.js"></script>
 
 </head>
 
-<body>
+<body ng-app="flowApp">
+<div>
+    <ul>
 
-<div ng-controller="Hello">
-  <p>The content is {{user.username}}</p>
+        <li><a href="#/login">Login</a></li>
+        <li><a href="#/second">Second</a></li>
+
+    </ul>
+</div>
+<div class = "container">
+
+    <div ng-view></div>
+
 </div>
 
 
