@@ -1,23 +1,45 @@
 
-var flowApp = angular.module('flowApp', ['ngResource','ngRoute','ngCookies']);
+var flowApp = angular.module('flowApp', ['ngResource','ui.router','ngCookies']);
 
-flowApp.config(function ($routeProvider){
+flowApp.config(function ($stateProvider, $urlRouterProvider){
 
-    $routeProvider
+    // For any unmatched url, send to /main (feed)
+    $urlRouterProvider.otherwise('/')
 
-    .when('/', {
-            templateUrl: 'views/login.html',
-            controller:  'secureCtrl'
-    }).when('/settings',{
-            templateUrl: 'views/settings.html',
-            controller: 'secondController'
-    }).when('/main', {
-            templateUrl: 'views/main.html',
-            controller: 'secondController'
-    }).when('/profile', {
-            templateUrl: 'views/profile.html',
-            controller: 'secondController'
-    });
+        $stateProvider
+            .state('main', {
+                url: '/main',
+                templateUrl:'views/main.html',
+                controller: 'secondController'
+            })
+            .state('login', {
+                url: '/',
+                templateUrl:'views/login.html',
+                controller:'secureCtrl'
+            })
+            .state('profile', {
+                url:'/profile',
+                templateUrl:'views/profile.html',
+                controller:'secondController'
+            })
+            .state('settings', {
+                url:'/settings',
+                templateUrl:'views/settings.html',
+                controller:'secondController'
+            })
+    // .when('/', {
+    //         templateUrl: 'views/login.html',
+    //         controller:  'secureCtrl'
+    // }).when('/settings',{
+    //         templateUrl: 'views/settings.html',
+    //         controller: 'secondController'
+    // }).when('/main', {
+    //         templateUrl: 'views/main.html',
+    //         controller: 'secondController'
+    // }).when('/profile', {
+    //         templateUrl: 'views/profile.html',
+    //         controller: 'secondController'
+    // });
 });
 
 flowApp.controller('Hello', function($scope, $http) {
