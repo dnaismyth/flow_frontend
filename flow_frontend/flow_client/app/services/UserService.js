@@ -15,28 +15,32 @@
 
         return service;
 
+        // Search for a user by name, or return all users if name param is empty
         function Search(page, size, name){
             return $http.get('/api/users?page='+page+'&size='+size+'&name='+name).then(handleSuccess, handleError('Error getting all users'));
         }
 
+        // Get a user by provided id
         function GetById(id){
             return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
         }
 
+        // Return the current user's profile information
         function GetMyProfile(){
             return $http.get('/api/me').then(handleSuccess, handleError('Error getting user profile.'));
         }
 
+        // Update the current logged in user information
         function Update(user){
             return $http.put('/api/me', user).then(handleSuccess, handleError('Error updating user profile.'));
         }
 
+        // Delete the current logged in user
         function Delete() {
             return $http.delete('/api/me').then(handleSuccess, handleError('Error deleting user'));
         }
 
         // private functions
-
         function handleSuccess(res){
             return res.data;
         }
