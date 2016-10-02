@@ -1,109 +1,136 @@
+(function(){
+//var flowApp = angular.module('flowApp', ['ngResource','ui.router','ngCookies', 'ngStorage']);
+angular
+    .module('flowApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngStorage'])
+    .config(config)
+    .run(run);
 
-var flowApp = angular.module('flowApp', ['ngResource','ui.router','ngCookies', 'ngStorage']);
+config.$inject = ['$routeProvider', '$locationProvider', '$controllerProvider'];
+function config ($routeProvider, $locationProvider){
 
-flowApp.config(function ($stateProvider, $urlRouterProvider){
 
-    // For any unmatched url, send to /main (feed)
-    $urlRouterProvider.otherwise('/')
-
-        $stateProvider
-            .state('main', {
-                url: '/main',
+        $routeProvider
+            .when('/main', {
                 templateUrl:'views/main.html',
-                controller: 'profile'
+                //controllerAs: 'vm'
             })
-            .state('login', {
-                url: '/',
+            .when('/', {
                 templateUrl:'views/login.html',
-                controller:'secureCtrl'
+                controller:'LoginController',
+                controllerAs: 'vm'
             })
-            .state('profile', {
-                url:'/profile',
-                templateUrl:'views/profile.html'
+            .when('/profile', {
+                templateUrl:'views/profile.html',
+                //controllerAs: 'vm'
                 //controller:'profile'
             })
-            .state('settings', {
-                url:'/settings',
+            .when('/settings', {
                 templateUrl:'views/settings.html',
-                controller:'secondController'
-            })
-    // .when('/', {
-    //         templateUrl: 'views/login.html',
-    //         controller:  'secureCtrl'
-    // }).when('/settings',{
-    //         templateUrl: 'views/settings.html',
-    //         controller: 'secondController'
-    // }).when('/main', {
-    //         templateUrl: 'views/main.html',
-    //         controller: 'secondController'
-    // }).when('/profile', {
-    //         templateUrl: 'views/profile.html',
-    //         controller: 'secondController'
-    // });
-});
+                //controllerAs:'vm'
+               // controller:'secondController'
+            }).otherwise({redirectTo: '/'});
+    }
 
-flowApp.controller('Hello', function($scope, $http) {
-    $http.get('http://localhost:8080/api/register/hello').
-    then(function(response) {
-        $scope.user = response.data;
-    });
-});
+    run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
+    function run($rootScope, $location, $cookies, $http){
 
-flowApp.controller('secureCtrl',
-    function($scope, $resource, $http, $httpParamSerializer, $cookies) {
-
-        $scope.data = {
-            grant_type:"password",
-            username: "",
-            password: "",
-            client_id: "mediacenter"
-        };
-        $scope.encoded = btoa("mediacenter:secret");
-        $scope.login = function() {
-            var req = {
-                method: 'POST',
-                url: "http://localhost:8080/api/oauth/token",
-                headers: {
-                    "Authorization": "Basic " + $scope.encoded,
-                    "Content-type": "application/x-www-form-urlencoded; charset=utf-8"
-                },
-                data: $httpParamSerializer($scope.data)
-            };
-            $http(req).then(function(data){
-                $http.defaults.headers.common.Authorization =
-                    'Bearer ' + data.data.access_token;
-                $cookies.put("access_token", data.data.access_token);
-                console.log("This is my cookie" + $cookies.get("access_token"));
-                //console.log(data.data.access_token);
-                window.location.href="#/main";  // after login, enter into main feed
-            });
+        $rootScope.globals = $cookies.get('globals') || {};
+        if($rootScope.globals.currentUser){
+            $http.defaults.headers.common.Authorization =
+                'Bearer ' + $rootScope.globals.currentUser.token;
         }
-    });
 
-flowApp.controller('firstController', ['$scope', '$log', function($scope, $log){
+        $rootScope.$on('$locationChangeStart', function(event, next, current){
+            var restrictedPage = $.inArray($location.path(), ['/']) === -1;
+            var loggedIn = $rootScope.globals.currentUser;
+            if(restrictedPage && !loggedIn){
+                $location.path('/');
+            }
+        });
 
-}]);
-
-
-// Temp controllers for testing purposes
-flowApp.controller('secondController', ['$scope', '$log', function($scope, $log){
-
-}]);
-
-
-// Get the current logged in user
-flowApp.controller('profile', function($scope, $http, $localStorage){
-    $http.get('http://localhost:8080/api/me').
-        then(function(response){
-            //$scope.user = response.data;
-            $localStorage.user = response.data;
-            console.log($localStorage.user.username);
-            //console.log($rootScope.user.username);
-            //$cookies.put("user", $rootScope.user);  // store the current user into a cookie
-    });
-
-        $scope.data = $localStorage.user;
-        console.log("This is the current user: " + $localStorage.user.username);
-
-});
+    }
+})();
+// flowApp.controller('Hello', function($scope, $http) {
+//     $http.get('http://localhost:8080/api/register/hello').
+//     then(function(response) {
+//         $scope.user = response.data;
+//     });
+// });
+//
+// flowApp.controller('secureCtrl',
+//     function($scope, $resource, $http, $httpParamSerializer, $cookies, $rootScope) {
+//
+//         $scope.data = {
+//             grant_type:"password",
+//             username: "",
+//             password: "",
+//             client_id: "mediacenter"
+//         };
+//         $scope.encoded = btoa("mediacenter:secret");
+//         $scope.login = function() {
+//             var req = {
+//                 method: 'POST',
+//                 url: "http://localhost:8080/api/oauth/token",
+//                 headers: {
+//                     "Authorization": "Basic " + $scope.encoded,
+//                     "Content-type": "application/x-www-form-urlencoded; charset=utf-8"
+//                 },
+//                 data: $httpParamSerializer($scope.data)
+//             };
+//             $http(req).then(function(data){
+//
+//                 $rootScope.globals = {
+//                     currentUser: {
+//                         username : data.username,
+//                         encoded : encoded
+//                     }
+//                 };
+//                 $http.defaults.headers.common.Authorization =
+//                     'Bearer ' + data.data.access_token;
+//                 $cookies.put("access_token", data.data.access_token);
+//                 $cookies.put('globals', $rootScope.globals)
+//                 window.location.href="#/main";  // after login, enter into main feed
+//             });
+//
+//            function clearCredentials(){
+//                $rootScope.globals = {};
+//                $cookies.remove('globals')
+//                $http.defaults.headers.common.Authorization = 'Bearer ';
+//            }
+//         }
+//
+//     });
+//
+// flowApp.controller('firstController', ['$scope', '$log', function($scope, $log){
+//
+// }]);
+//
+//
+// // Temp controllers for testing purposes
+// flowApp.controller('secondController', ['$scope', '$log', function($scope, $log){
+//
+// }]);
+//
+//
+// // Get the current logged in user
+// flowApp.controller('profile', function($scope, $http, $localStorage){
+//     $http.get('http://localhost:8080/api/me').
+//     then(function(response){
+//         $localStorage.user = response.data;
+//         console.log($localStorage.user.username);
+//     });
+//     $scope.data = $localStorage.user;
+//     // $http.get('http://localhost:8080/api/me').
+//     //     then(function(response){
+//     //         //$scope.user = response.data;
+//     //         //$localStorage.user = response.data;
+//     //         //console.log($localStorage.user.username);
+//     //         //console.log($rootScope.user.username);
+//     //         //$cookies.put("user", $rootScope.user);  // store the current user into a cookie
+//     // });
+//
+//        // $scope.data = $localStorage.user;
+//         //console.log("This is the current user: " + $localStorage.user.username);
+//
+// });
 

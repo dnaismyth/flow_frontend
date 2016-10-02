@@ -1,5 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html ng-app="flowApp">
+</html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -24,14 +25,19 @@
 
     <title>Strive</title>
     <script src="app.js"></script>
+    <script src="controllers/LoginController.js"></script>
+    <script src="services/AuthenticationService.js"></script>
+    <script src="services/UserService.js"></script>
+    <script src="services/FlashService.js"></script>
 
 </head>
 
-<body class="container" ng-app="flowApp">
-
-<div class="row">
-    <div class="span12">
-        <div class="well" ui-view></div><!--Content of the above defined business & portfolio states will be injected here -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+            <div ng-view></div>
+        </div>
     </div>
 </div>
 
