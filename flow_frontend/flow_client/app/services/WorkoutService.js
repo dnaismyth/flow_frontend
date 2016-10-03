@@ -19,22 +19,22 @@
 
         // Get a workout by the provided id
         function GetById(id){
-            return $http.get('/api/workouts/' + id).then(handleSuccess, handleError('Error getting workout by id.'));
+            return $http.get('http://localhost:8080/api/workouts/' + id).then(handleSuccess, handleError('Error getting workout by id.'));
         }
 
         // Create a new workout
         function Create(workout){
-            return $http.post('/api/workouts', workout).then(handleSuccess, handleError('Error creating new workout.'));
+            return $http.post('http://localhost:8080/api/workouts', workout).then(handleSuccess, handleError('Error creating new workout.'));
         }
 
         // Update a workout if the current user is the owner or the user is admin
         function Update(workout){
-            return $http.put('/api/workouts', workout).then(handleSuccess, handleError('Error updating workout.'));
+            return $http.put('http://localhost:8080/api/workouts', workout).then(handleSuccess, handleError('Error updating workout.'));
         }
 
         // Delete a workout if the current user is the owner or the user is admin
         function Delete(id) {
-            return $http.delete('/api/workouts/' + id).then(handleSuccess, handleError('Error deleting workout.'));
+            return $http.delete('http://localhost:8080/api/workouts/' + id).then(handleSuccess, handleError('Error deleting workout.'));
         }
 
         // private functions

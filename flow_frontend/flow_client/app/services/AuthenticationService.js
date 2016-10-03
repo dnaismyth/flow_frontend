@@ -37,15 +37,16 @@
             };
 
             $http(req).success(function(data, response){
+                $rootScope.token = data.access_token;
                 $rootScope.globals = {
                     currentUser: {
                         username: username,
-                        token: data.access_token
+                        token: $rootScope.token
                     }
                 };
                 $http.defaults.headers.common.Authorization =
                     'Bearer ' + data.access_token;
-                $cookies.put("access_token", data.access_token);
+                $cookies.put("access_token", $rootScope.token);
                 $cookies.put('globals', $rootScope.globals);
                 callback(response);
             });

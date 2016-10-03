@@ -1,34 +1,26 @@
 /**
  * Created by DN on 2016-10-02.
  */
+/**
+ * Controller corresponding to the user profile view
+ */
 (function(){
     'use strict';
 
     angular.module('flowApp')
-        .controller('UserController', UserController);
+        .controller('ProfileController', ProfileController);
 
-    UserController.$inject = ['$location', 'UserService', '$cookies'];
-    function UserController($location, UserService, $cookies){
+    ProfileController.$inject = ['UserService', '$scope'];
+    function ProfileController( UserService, $scope){
         var vm = this;
-        vm.GetMyProfile = GetMyProfile;
+        $scope.user = null;
 
-        function GetMyProfile(){
+        var init = function GetMyProfile(){
             UserService.GetMyProfile().then(function(response){
-                if(response.username === vm.username ){        // check that the response username === current username
-                    $location.path('/profile');             // direct to profile
-                } else {
-                    FlashService.Error(response.message);
-                }
+                    $scope.user = response;
             });
-            // vm.dataLoading = true;
-            // AuthenticationService.Login(vm.username, vm.password, function(response){
-            //     if(response === 200){   // if OK, redirect to main feed
-            //         $location.path('/main');
-            //     } else {
-            //         FlashService.Error(response.message);
-            //         vm.dataLoading = false;
-            //     }
-            // });
         };
+
+        init();
     }
 })();

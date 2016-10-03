@@ -4,8 +4,8 @@
     angular.module('flowApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
-    function LoginController($location, AuthenticationService, FlashService){
+    LoginController.$inject = ['$location', '$rootScope', 'AuthenticationService', 'FlashService', 'UserService'];
+    function LoginController($location, $rootScope, AuthenticationService, FlashService, UserService){
         var vm = this;
         vm.login = login;
 
@@ -17,12 +17,16 @@
             vm.dataLoading = true;
             AuthenticationService.Login(vm.username, vm.password, function(response){
                 if(response === 200){   // if OK, redirect to main feed
-                    $location.path('/main');
+                    UserService.GetMyProfile().then(function(res){
+                        $rootScope.userInfo = res;  //todo: store result
+                        $location.path('/main');
+                    });
                 } else {
                     FlashService.Error(response.message);
                     vm.dataLoading = false;
                 }
             });
         };
+
     }
 })();

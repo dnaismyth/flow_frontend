@@ -5,6 +5,7 @@ angular
     .config(config)
     .run(run);
 
+
 config.$inject = ['$routeProvider', '$locationProvider', '$controllerProvider'];
 function config ($routeProvider, $locationProvider){
 
@@ -12,7 +13,8 @@ function config ($routeProvider, $locationProvider){
         $routeProvider
             .when('/main', {
                 templateUrl:'views/main.html',
-                //controllerAs: 'vm'
+                controller:'ProfileController',
+                controllerAs: 'vm'
             })
             .when('/', {
                 templateUrl:'views/login.html',
@@ -21,8 +23,8 @@ function config ($routeProvider, $locationProvider){
             })
             .when('/profile', {
                 templateUrl:'views/profile.html',
-                //controllerAs: 'vm'
-                //controller:'profile'
+                controllerAs: 'vm',
+                controller:'ProfileController'
             })
             .when('/settings', {
                 templateUrl:'views/settings.html',

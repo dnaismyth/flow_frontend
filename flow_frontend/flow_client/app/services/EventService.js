@@ -19,22 +19,22 @@
 
         // Get an event by the provided id
         function GetById(id) {
-            return $http.get('/api/events/' + id).then(handleSuccess, handleError('Error getting event by id.'));
+            return $http.get('http://localhost:8080/api/events/' + id).then(handleSuccess, handleError('Error getting event by id.'));
         }
 
         // Create a new event
         function Create(event){
-            return $http.post('/api/events', event).then(handleSuccess, handleError('Error creating new event.'));
+            return $http.post('http://localhost:8080/api/events', event).then(handleSuccess, handleError('Error creating new event.'));
         }
 
         // Update an existing event if the current user is the owner or the user is an admin
         function Update(id, event){
-            return $http.put('/api/events/' + id, event).then(handleSuccess, handleError('Error updating event.'));
+            return $http.put('http://localhost:8080/api/events/' + id, event).then(handleSuccess, handleError('Error updating event.'));
         }
 
         // Delete the event with provided id if the current user is the owner or the user is an admin
         function Delete(id){
-            return $http.delete('/api/events/' + id).then(handleSuccess, handleError('Error deleting event.'));
+            return $http.delete('http://localhost:8080/api/events/' + id).then(handleSuccess, handleError('Error deleting event.'));
         }
 
         // private functions
