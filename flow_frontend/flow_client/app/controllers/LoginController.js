@@ -18,7 +18,7 @@
             AuthenticationService.Login(vm.username, vm.password, function(response){
                 if(response === 200){   // if OK, redirect to main feed
                     UserService.GetMyProfile().then(function(res){
-                        $rootScope.userInfo = res;  //todo: store result
+                        $rootScope.userInfo = res;  // store result
                         $location.path('/main');
                     });
                 } else {

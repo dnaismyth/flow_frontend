@@ -14,10 +14,10 @@
         service.Delete = Delete;
 
         return service;
-
         // Search for a user by name, or return all users if name param is empty
         function Search(page, size, name){
-            return $http.get('http://localhost:8080/api/users?page='+page+'&size='+size+'&name='+name).then(handleSuccess, handleError('Error getting all users'));
+            var url = 'http://localhost:8080/api/users?page='+page+'&size='+size+'&name='+name;
+            return $http.get(url).then(handleSuccess, handleError('Error getting all users'));
         }
 
         // Get a user by provided id

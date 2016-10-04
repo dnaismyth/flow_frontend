@@ -9,6 +9,19 @@
             </ul>
         </div>
     </div>
+
+    <div ng-controller="NavigationController as ctrl">
+        <h2>Search</h2>
+        <form name="form" ng-submit="ctrl.SearchUsers()" role="form">
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input type="text" name="name" id="name" class="form-control" ng-model="vm.name" required />
+            </div>
+            <div class="form-actions">
+                <button type="submit" ng-disabled="vm.dataLoading" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
 </nav>
 <h1>Main feed</h1>
 <p>Call controllers for the user feed after login.</p>

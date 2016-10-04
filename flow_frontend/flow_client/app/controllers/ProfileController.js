@@ -13,11 +13,11 @@
     ProfileController.$inject = ['UserService', '$scope'];
     function ProfileController( UserService, $scope){
         var vm = this;
-        $scope.user = null;
+        vm.user = null;
 
         var init = function GetMyProfile(){
             UserService.GetMyProfile().then(function(response){
-                    $scope.user = response;
+                    vm.user = response;
             });
         };
 
