@@ -1,3 +1,7 @@
+/**
+ * The purpose of this controller is to be used for initial login to the
+ * application which the user will then receive a token to continue access.
+ */
 (function(){
     'use strict';
 

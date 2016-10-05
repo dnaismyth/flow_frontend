@@ -2,7 +2,8 @@
  * Created by DN on 2016-10-02.
  */
 /**
- * Controller corresponding to the user profile view
+ * Controller corresponding to the user profile view which will
+ * include the user's workouts and user information (avatar, name, location etc..)
  */
 (function(){
     'use strict';
@@ -14,6 +15,7 @@
     function ProfileController( UserService, $scope){
         var vm = this;
         vm.user = null;
+
 
         var init = function GetMyProfile(){
             UserService.GetMyProfile().then(function(response){

@@ -1,6 +1,10 @@
 /**
  * Created by DN on 2016-10-03.
  */
+/**
+ * The purpose of this controller will be for the main navigation
+ * and searching (users)
+ */
 (function(){
     'use strict';
 

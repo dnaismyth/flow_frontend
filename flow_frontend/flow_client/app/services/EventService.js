@@ -1,6 +1,9 @@
 /**
  * Created by DN on 2016-10-02.
  */
+/**
+ * Services corresponding to user made Events
+ */
 (function() {
     'use strict';
     angular
@@ -14,6 +17,7 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
+        service.AddEventToInterests = AddEventToInterests;
 
         return service;
 
@@ -35,6 +39,11 @@
         // Delete the event with provided id if the current user is the owner or the user is an admin
         function Delete(id){
             return $http.delete('http://localhost:8080/api/events/' + id).then(handleSuccess, handleError('Error deleting event.'));
+        }
+
+        // Allow for the user to add an event to their interests
+        function AddEventToInterests(id){
+            return $http.post('http://localhost:8080/api/events/'+id+'/interests').then(handleSuccess, handleError('Error adding event to interests'));
         }
 
         // private functions
