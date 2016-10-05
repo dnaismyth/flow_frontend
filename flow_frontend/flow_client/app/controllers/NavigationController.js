@@ -16,7 +16,7 @@
         // Search for users by name
         function SearchUsers(){
             UserService.Search(0, 5, vm.name).then(function(response){
-                    vm.users = response; // fix this to return data, use now for testing
+                    vm.users = response;
             });
         };
 

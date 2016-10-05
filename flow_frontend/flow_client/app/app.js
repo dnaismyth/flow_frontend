@@ -13,7 +13,7 @@ function config ($routeProvider, $locationProvider){
         $routeProvider
             .when('/main', {
                 templateUrl:'views/main.html',
-                controller:'ProfileController',
+                controller:'FeedController',
                 controllerAs: 'vm'
             })
             .when('/', {
