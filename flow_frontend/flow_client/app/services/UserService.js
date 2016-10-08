@@ -12,7 +12,7 @@
         service.GetMyProfile = GetMyProfile;
         service.Update = Update;
         service.Delete = Delete;
-
+        service.GetTrendingUsers = GetTrendingUsers;
         return service;
         // Search for a user by name, or return all users if name param is empty
         function Search(page, size, name){
@@ -37,6 +37,11 @@
         // Delete the current logged in user
         function Delete() {
             return $http.delete('http://localhost:8080/api/me').then(handleSuccess, handleError('Error deleting user'));
+        }
+
+        // Get top 5 trending users
+        function GetTrendingUsers(){
+            return $http.get('http://localhost:8080/api/users/trending').then(handleSuccess, handleError('Error finding trending users'));
         }
 
         // private functions

@@ -51,10 +51,31 @@
     </form>
 </div>
 
-<!-- Container to hold workout feed -->
+<!-- Template to hold workouts in feed -->
 <div id="feed">
 
     <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
-        <div><span ng-bind="fw.distance"></span></div>
+            <span ng-bind="fw.owner.username"></span><br>
+        <div>
+            <span ng-bind="fw.fileName"></span>
+        </div>
+        <div><span ng-bind="fw.distance"></span>
+            <span ng-bind="fw.duration"></span>
+            <span ng-bind="fw.address"></span>
+        </div>
+        <div>
+            <span ng-bind="fw.description"></span>
+        </div>
     </div>
+</div>
+<br>
+<!-- Container to hold trending users -->
+<b>Trending users</b>
+<div id = "trending">
+
+    <div ng-repeat="user in vm.trendingUsers">
+        <span ng-bind="user.username"></span>
+        <span ng-bind="user.avatar"></span>
+    </div>
+
 </div>
