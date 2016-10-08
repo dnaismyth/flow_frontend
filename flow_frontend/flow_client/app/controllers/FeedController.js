@@ -23,7 +23,7 @@
         // TODO: change page and size, use for testing for now
         function GetUserFeed(){
             WorkoutFeedService.GetUserFeed(0,10).then(function(response){
-                vm.workout = response;
+                vm.feedWorkout = response.page.content;
             });
         };
 

@@ -12,6 +12,7 @@
 
     <div ng-controller="NavigationController as ctrl">
         <h2>Search</h2>
+        <p>Hello user {{userInfo.username}}</p>
         <form name="search_form" ng-submit="ctrl.SearchUsers()" role="form">
             <div class="form-group">
                 <label for="name">Username</label>
@@ -23,25 +24,37 @@
         </form>
     </div>
 </nav>
-<h1>Main feed</h1>
-<p>Call controllers for the user feed after login.</p>
-<p>Hello user {{userInfo.username}}</p>
 
-<h1> Create Workout </h1>
-<form name="workout_form" ng-submit="vm.CreateWorkout()" role="form">
-    <!-- Running Fields -->
-    <div class="form-group">
-        <input type="text" name="distance" placeholder="Distance" id="distance" class="form-control" ng-model="vm.workout.distance" required />
-        <input type="text" name="duration" placeholder="Duration" id="duration" class="form-control" ng-model="vm.workout.duration" required />
-        <input type="text" name="location" placeholder="Location" id="location" class="form-control" ng-model="vm.workout.location" required />
+<!-- Container to hold main workout submission form -->
+<div id="workout">
+    <form name="workout_form" ng-submit="vm.CreateWorkout()" role="form">
+        <!-- Run title -->
+        <div class="form-group">
+            <input type="text" placeholder="Give your run a title" class="form-control" ng-model="vm.media.caption" required />
+        </div>
+        <!-- Running Fields -->
+        <div class="form-group">
+            <ul>
+                <li><input type="text" placeholder="Distance" class="form-control" ng-model="vm.workout.distance" required /></li>
+                <li><input type="text" placeholder="Duration" class="form-control" ng-model="vm.workout.duration" required /></li>
+                <li><input type="text" placeholder="Location" class="form-control" ng-model="vm.workout.location" required /></li>
+            </ul>
+        </div>
+        <!-- Media Fields-->
+        <div class="form-group">
+            <input type="text" placeholder="Add a description..." class="form-control" ng-model="vm.workout.description" />
+            <input type="text" ng-model="vm.media.fileName" required />
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
+
+<!-- Container to hold workout feed -->
+<div id="feed">
+
+    <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
+        <div><span ng-bind="fw.distance"></span></div>
     </div>
-    <!-- Media Fields-->
-    <div class="form-group">
-        <input type="text" name="description" placeholder="Add a description..." id="description" class="form-control" ng-model="vm.workout.description" />
-        <input type="text" name="caption" placeholder="Add a caption..." id="caption" class="form-control" ng-model="vm.media.caption" />
-        <input type="text" ng-model="vm.media.fileName" />
-    </div>
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-</form>
+</div>
