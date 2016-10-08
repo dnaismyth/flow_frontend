@@ -25,7 +25,8 @@
 
         // Create new media to be added to a workout
         function Create(media){
-            return $http.post('http://localhost:8080/api/media', media).then(handleSuccess, handleError('Error creating new media.'));
+            var created = $http.post('http://localhost:8080/api/media', media).then(handleSuccess, handleError('Error creating new media.'));
+            return created;
         }
 
         // Update existing media

@@ -12,7 +12,7 @@
 
     <div ng-controller="NavigationController as ctrl">
         <h2>Search</h2>
-        <form name="form" ng-submit="ctrl.SearchUsers()" role="form">
+        <form name="search_form" ng-submit="ctrl.SearchUsers()" role="form">
             <div class="form-group">
                 <label for="name">Username</label>
                 <input type="text" name="name" id="name" class="form-control" ng-model="ctrl.name" required />
@@ -27,4 +27,21 @@
 <p>Call controllers for the user feed after login.</p>
 <p>Hello user {{userInfo.username}}</p>
 
-<p>{{vm.workout}}</p>
+<h1> Create Workout </h1>
+<form name="workout_form" ng-submit="vm.CreateWorkout()" role="form">
+    <!-- Running Fields -->
+    <div class="form-group">
+        <input type="text" name="distance" placeholder="Distance" id="distance" class="form-control" ng-model="vm.workout.distance" required />
+        <input type="text" name="duration" placeholder="Duration" id="duration" class="form-control" ng-model="vm.workout.duration" required />
+        <input type="text" name="location" placeholder="Location" id="location" class="form-control" ng-model="vm.workout.location" required />
+    </div>
+    <!-- Media Fields-->
+    <div class="form-group">
+        <input type="text" name="description" placeholder="Add a description..." id="description" class="form-control" ng-model="vm.workout.description" />
+        <input type="text" name="caption" placeholder="Add a caption..." id="caption" class="form-control" ng-model="vm.media.caption" />
+        <input type="text" ng-model="vm.media.fileName" />
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>

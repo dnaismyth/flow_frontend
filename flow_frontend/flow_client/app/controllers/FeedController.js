@@ -12,11 +12,12 @@
     angular.module('flowApp')
         .controller('FeedController', FeedController);
 
-    FeedController.$inject = ['WorkoutFeedService', 'EventService'];
-    function FeedController( WorkoutFeedService, EventService){
+    FeedController.$inject = ['WorkoutFeedService', 'EventService', 'WorkoutService', 'MediaService'];
+    function FeedController( WorkoutFeedService, EventService, WorkoutService, MediaService){
         var vm = this;
         vm.GetUserFeed = GetUserFeed;
         vm.AddEventToInterests = AddEventToInterests;
+        vm.CreateWorkout = CreateWorkout;
 
         // Return the workouts in the current logged in user feed
         // TODO: change page and size, use for testing for now
@@ -32,6 +33,16 @@
                 vm.added = response;
             })
         };
+
+        // Basic create workout
+        function CreateWorkout(){
+            // Media model
+            MediaService.Create(vm.media).then(function(response){
+                vm.workout.media = response.data;
+            }).then(function(){
+               WorkoutService.Create(vm.workout)
+            });
+        }
 
         /* Call to retrieve workouts*/
         vm.GetUserFeed();
