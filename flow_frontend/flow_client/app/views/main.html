@@ -43,7 +43,8 @@
         <!-- Media Fields-->
         <div class="form-group">
             <input type="text" placeholder="Add a description..." class="form-control" ng-model="vm.workout.description" />
-            <input type="text" ng-model="vm.media.fileName" required />
+            <!--<input type="text" ng-model="vm.media.fileName" required />-->
+            <input name="file" type="file" file />
         </div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Create</button>
@@ -54,6 +55,7 @@
 <!-- Template to hold workouts in feed -->
 <div id="feed">
 
+    <!-- Test this for file input later to use file directive (check setup)-->
     <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
             <span ng-bind="fw.owner.username"></span><br>
         <div>

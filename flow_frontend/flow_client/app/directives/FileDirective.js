@@ -6,7 +6,7 @@
         return {
             restrict: 'AE',
             scope: {
-                file: '@'
+                file: '='
             },
             link: function(scope, el, attrs){
                 el.bind('change', function(event){

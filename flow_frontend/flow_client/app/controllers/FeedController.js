@@ -12,8 +12,8 @@
     angular.module('flowApp')
         .controller('FeedController', FeedController);
 
-    FeedController.$inject = ['WorkoutFeedService', 'EventService', 'WorkoutService', 'MediaService', 'UserService'];
-    function FeedController( WorkoutFeedService, EventService, WorkoutService, MediaService, UserService){
+    FeedController.$inject = ['$scope','WorkoutFeedService', 'EventService', 'WorkoutService', 'MediaService', 'UserService'];
+    function FeedController($scope, WorkoutFeedService, EventService, WorkoutService, MediaService, UserService){
         var vm = this;
         vm.GetUserFeed = GetUserFeed;
         vm.AddEventToInterests = AddEventToInterests;
@@ -45,6 +45,7 @@
         // Basic create workout
         function CreateWorkout(){
             // Media model
+            vm.media.fileName = $scope.file.name;
             MediaService.Create(vm.media).then(function(response){
                 vm.workout.media = response.data;
             }).then(function(){
