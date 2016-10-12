@@ -14,6 +14,7 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
+        service.GetAllWorkoutsByUser = GetAllWorkoutsByUser;
 
         return service;
 
@@ -35,6 +36,11 @@
         // Delete a workout if the current user is the owner or the user is admin
         function Delete(id) {
             return $http.delete('http://localhost:8080/api/workouts/' + id).then(handleSuccess, handleError('Error deleting workout.'));
+        }
+
+        function GetAllWorkoutsByUser(page, size, id){
+            return $http.get('http://localhost:8080/api/workouts/users/' + id + '?page=' + page + '&size=' + size).then(handleSuccess,
+                            handleError('Error finding all workouts created by this user.'));
         }
 
         // private functions
