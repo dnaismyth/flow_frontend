@@ -1,3 +1,6 @@
+/**
+ * Service for all user related controls
+ */
 (function(){
     'use strict';
     angular
@@ -13,7 +16,9 @@
         service.Update = Update;
         service.Delete = Delete;
         service.GetTrendingUsers = GetTrendingUsers;
+        service.FindUsersInQuest = FindUsersInQuest;
         return service;
+
         // Search for a user by name, or return all users if name param is empty
         function Search(page, size, name){
             return $http.get('http://localhost:8080/api/users?page='+page+'&size='+size+'&name='+name).then(handleSuccess, handleError('Error getting all users'));
@@ -42,6 +47,11 @@
         // Get top 5 trending users
         function GetTrendingUsers(){
             return $http.get('http://localhost:8080/api/users/trending').then(handleSuccess, handleError('Error finding trending users'));
+        }
+
+        // Return all of the users participating in the provided quest (corresponding to the id input)
+        function FindUsersInQuest(id){
+            return $http.get('http://localhost:8080/api/users/quests/' + id).then(handleSuccess, handleError('Error finding users participating in this quest.'));
         }
 
         // private functions
