@@ -1,4 +1,5 @@
 html, body, .container {
+    font-family: 'Source Sans Pro', sans-serif;
     height:100%;
 }
 
@@ -18,7 +19,9 @@ body { background-color: transparent; }
 
 .vertical-center-row {
     display: table-cell;
+
     vertical-align: middle;
+
 }
 
 
@@ -43,6 +46,11 @@ body { background-color: transparent; }
     color:white;
 }
 
+.login-container table a{
+    font-size: 75%;
+    color:white;
+}
+
 .form-group input[type=text], input[type=password]{
     background-color: #bfbfbe;
     padding: 9% 6%;
@@ -50,7 +58,11 @@ body { background-color: transparent; }
     border: 1px solid white;
 }
 
-.form-group input:active{
+.form-group textarea{
+    color:white;
+}
+
+.form-group input:active input:-webkit-autofill textarea:-webkit-autofill, select:-webkit-autofill{
     background: #bebebe;
 }
 
