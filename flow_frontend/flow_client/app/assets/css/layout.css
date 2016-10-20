@@ -51,19 +51,19 @@ body { background-color: transparent; }
     color:white;
 }
 
-.form-group input[type=text], input[type=password]{
+.form-control {
+    height:50px;
+}
+
+.form-group input{
     background-color: #bfbfbe;
-    padding: 9% 6%;
+    padding: 4% 8%;
     font-size:150%;
     border: 1px solid white;
 }
 
 .form-group textarea{
     color:white;
-}
-
-.form-group input:active input:-webkit-autofill textarea:-webkit-autofill, select:-webkit-autofill{
-    background: #bebebe;
 }
 
 .form-actions button {
