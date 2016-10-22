@@ -13,6 +13,11 @@
         var vm = this;
         vm.login = login;
 
+        // Background image used for login screen only
+        vm.bgImage = {
+            background: 'url(assets/img/login_bg.png)'
+        };
+
         (function initController(){
             AuthenticationService.ClearCredentials();
         })();

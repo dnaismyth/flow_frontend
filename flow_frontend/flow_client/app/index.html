@@ -17,12 +17,10 @@
 
 
 </head>
+<body>
 
-
-    <div class="container">
             <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
             <div ng-view></div>
-    </div>
 
 
 
@@ -55,7 +53,6 @@
 <script src="services/WorkoutService.js"></script>
 <script src="services/MediaService.js"></script>
 <script src="directives/FileDirective.js"></script>
-
 </body>
 </html>
 

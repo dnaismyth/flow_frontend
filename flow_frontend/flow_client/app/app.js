@@ -6,9 +6,8 @@ angular
     .run(run);
 
 
-config.$inject = ['$routeProvider', '$locationProvider', '$controllerProvider'];
+config.$inject = ['$routeProvider', '$locationProvider'];
 function config ($routeProvider, $locationProvider){
-
 
         $routeProvider
             .when('/main', {
