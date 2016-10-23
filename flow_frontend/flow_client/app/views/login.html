@@ -5,7 +5,18 @@
                 <div class="login-container col-xs-offset-2">
                     <h2>Login to <B>STRIVE.</B></h2>
                     <br>
+                    <!-- Sign in with Facebook -->
+                    <div class="form-group">
+                        <button type="Sign in with Facebook." class="btn btn-primary btn-block">
+                            <i class="fa fa-facebook" style="padding-right:10%"></i> <b>Login with Facebook</b>
+                        </button>
+                        <br/>
+                        <h5>Or log in with your username</h5>
+                    </div>
+
+                    <!-- Form for logging in with STRIVE Username/Password -->
                     <form name="form" ng-submit="vm.login()" role="form">
+
                         <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                             <input type="text" name="username" id="username" class="form-control" ng-model="vm.username" placeholder="Username" required />
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
