@@ -12,6 +12,8 @@
     function LoginController($location, $rootScope, AuthenticationService, FlashService, UserService, ResourceService){
         var vm = this;
         vm.login = login;
+        vm.NewUserSignUp = NewUserSignUp;
+        vm.signUp = true;
 
         // Background image used for login screen only
         vm.bgImage = {
@@ -45,6 +47,11 @@
                 }
             });
         };
+
+        function NewUserSignUp(){
+            vm.dataLoading = true;
+            AuthenticationService.SignUp(vm.newUsername, vm.newEmail, vm.newPassword, vm.newName);
+        }
 
     }
 })();

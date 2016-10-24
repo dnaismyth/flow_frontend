@@ -2,7 +2,7 @@
     <div class ="container container-table">
         <div class="row vertical-center-row">
             <div class="centered col-lg-4 col-xs-offset-3">
-                <div class="login-container col-xs-offset-2">
+                <div ng-show="!vm.signUp == true" class="login-container col-xs-offset-2">
                     <h2>Login to <B>STRIVE.</B></h2>
                     <br>
                     <!-- Sign in with Facebook -->
@@ -36,6 +36,33 @@
                             <th><a href="#/main" style="padding-left:55px;"> <b>Forgot Password?</b></a></th></thead>
                         </tr>
                     </table>
+                </div>
+
+                <div>
+                    <div ng-show="vm.signUp == true" class="login-container col-xs-offset-2">
+                        <!-- Form for a new user sign up to provide their username, email, password of choice -->
+                        <form ng-submit="vm.NewUserSignUp()" role="form">
+                            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                <input type="text" name="newUsername" id="newUsername" class="form-control" ng-model="vm.newUsername" placeholder="Username" required />
+                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                <input type="text" name="newName" id="newName" class="form-control" ng-model="vm.newName" placeholder="Name" required />
+                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                <input type="text" name="newEmail" id="newEmail" class="form-control" ng-model="vm.newEmail" placeholder="E-mail" required />
+                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">E-mail is required</span>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                <input type="password" name="newPassword" id="newPassword" class="form-control" ng-model="vm.newPassword" placeholder="Password" required />
+                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary btn-block"><b>Sign up</b></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

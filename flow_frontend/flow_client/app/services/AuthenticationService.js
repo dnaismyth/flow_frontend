@@ -11,10 +11,11 @@
 
         service.Login = Login;
         service.ClearCredentials = ClearCredentials;
+        service.SignUp = SignUp;
 
         return service;
 
-
+        // User login
         function Login(username, password, callback){
 
             $rootScope.data = {
@@ -23,7 +24,6 @@
                 password:password,
                 client_id:"mediacenter"
             };
-
             $rootScope.encoded = btoa("mediacenter:secret");
 
             var req = {
@@ -50,6 +50,44 @@
                 $cookies.put('globals', $rootScope.globals);
                 callback(response);
             });
+        }
+
+        // New user signup
+        function SignUp(username, email, password, name){
+            $rootScope.signUpRequest = {
+                username: username,
+                name: name,
+                email : email,
+                password : password
+            }
+
+            $rootScope.encoded = btoa("mediacenter:secret");
+
+            var req = {
+                method: 'POST',
+                url: "http://localhost:8080/api/register",
+                headers: {
+                    "Authorization": "Basic " + $rootScope.encoded,
+                    "Content-type": "application/json; charset=utf-8"
+                },
+                data: $rootScope.signUpRequest
+            };
+            $http(req).success(function(signUpRequest, response){
+                // $rootScope.token = signUpRequest.access_token;
+                // $rootScope.globals = {
+                //     currentUser: {
+                //         username: username,
+                //         token: $rootScope.token
+                //     }
+                // };
+                // $http.defaults.headers.common.Authorization =
+                //     'Bearer ' + data.access_token;
+                // $cookies.put("access_token", $rootScope.token);
+                // $cookies.put('globals', $rootScope.globals);
+                // callback(response);
+            });
+
+
         }
 
         function ClearCredentials(){
