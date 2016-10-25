@@ -14,6 +14,7 @@
         vm.login = login;
         vm.NewUserSignUp = NewUserSignUp;
         vm.signUp = true;
+        vm.signuUpSuccess = false;
 
         // Background image used for login screen only
         vm.bgImage = {
@@ -50,7 +51,13 @@
 
         function NewUserSignUp(){
             vm.dataLoading = true;
-            AuthenticationService.SignUp(vm.newUsername, vm.newEmail, vm.newPassword, vm.newName);
+            AuthenticationService.SignUp(vm.newUsername, vm.newEmail, vm.newPassword, vm.newName, function(response){
+                if(response === 200){
+                    vm.signupSuccess = true;
+                } else {
+                    //
+                }
+            });
         }
 
     }

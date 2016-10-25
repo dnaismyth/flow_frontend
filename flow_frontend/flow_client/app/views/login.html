@@ -41,18 +41,21 @@
                 <div>
                     <div ng-show="vm.signUp == true" class="login-container col-xs-offset-2">
                         <!-- Form for a new user sign up to provide their username, email, password of choice -->
-                        <form ng-submit="vm.NewUserSignUp()" role="form">
+                        <form name="signup" ng-submit="vm.NewUserSignUp()" role="form">
                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <input type="text" name="newUsername" id="newUsername" class="form-control" ng-model="vm.newUsername" placeholder="Username" required />
                                 <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
                             </div>
+                            <!--<div ng-if="signup.$pending.usernameExists">checking....</div>-->
+                            <!--<div ng-if="signup.$error.usernameExists">username exists already</div>-->
+
                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <input type="text" name="newName" id="newName" class="form-control" ng-model="vm.newName" placeholder="Name" required />
                                 <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                             </div>
-                            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-                                <input type="text" name="newEmail" id="newEmail" class="form-control" ng-model="vm.newEmail" placeholder="E-mail" required />
-                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">E-mail is required</span>
+                            <div class="form-group" ng-class="{ 'has-error': form.newEmail.$dirty && form.newEmail.$error.required }">
+                                <input type="email" name="newEmail" id="newEmail" class="form-control" ng-model="vm.newEmail" placeholder="E-mail" required />
+                                <span ng-show="form.newEmail.$dirty && form.newEmail.$error.required" class="help-block">E-mail is required</span>
                             </div>
                             <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                                 <input type="password" name="newPassword" id="newPassword" class="form-control" ng-model="vm.newPassword" placeholder="Password" required />

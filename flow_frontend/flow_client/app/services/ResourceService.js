@@ -17,6 +17,7 @@
         service.GetS3Token = GetS3Token;
         service.SendPasswordResetEmail = SendPasswordResetEmail;
         service.FinishPasswordReset = FinishPasswordReset;
+        service.CheckUniqueUsername = CheckUniqueUsername;
         return service;
 
         // Used to retrieve a temporary token for the user to upload media during their logged in session
@@ -32,6 +33,11 @@
         // Allow for a user to update and finish their password reset
         function FinishPasswordReset(password){
             return $http.post('http://localhost:8080/api/resources/finish-reset-password', password).then(handleSuccess, handleError('error completing reset password request.'));
+        }
+
+        // Check that a username is unique to dynamically display during user sign up
+        function CheckUniqueUsername(username){
+            return $http.get('http://localhost:8080/api/resources/'+username+'/unique');
         }
 
         // private functions

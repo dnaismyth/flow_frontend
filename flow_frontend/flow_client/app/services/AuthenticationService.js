@@ -53,7 +53,7 @@
         }
 
         // New user signup
-        function SignUp(username, email, password, name){
+        function SignUp(username, email, password, name, callback){
             $rootScope.signUpRequest = {
                 username: username,
                 name: name,
@@ -85,6 +85,8 @@
                 // $cookies.put("access_token", $rootScope.token);
                 // $cookies.put('globals', $rootScope.globals);
                 // callback(response);
+            }).error(function(response){
+                callback(response);
             });
 
 
