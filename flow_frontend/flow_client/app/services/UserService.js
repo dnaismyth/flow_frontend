@@ -17,6 +17,7 @@
         service.Delete = Delete;
         service.GetTrendingUsers = GetTrendingUsers;
         service.FindUsersInQuest = FindUsersInQuest;
+        service.GetS3Token = GetS3Token;
         return service;
 
         // Search for a user by name, or return all users if name param is empty
@@ -42,6 +43,11 @@
         // Delete the current logged in user
         function Delete() {
             return $http.delete('http://localhost:8080/api/me').then(handleSuccess, handleError('Error deleting user'));
+        }
+
+        // Used to retrieve a temporary token for the user to upload media during their logged in session
+        function GetS3Token(){
+            return $http.get('http://localhost:8080/api/me/s3token').then(handleSuccess, handleError('Error retrieving s3 token.'));
         }
 
         // Get top 5 trending users

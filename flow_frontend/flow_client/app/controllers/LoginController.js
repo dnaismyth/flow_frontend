@@ -8,8 +8,8 @@
     angular.module('flowApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', '$rootScope', 'AuthenticationService', 'FlashService', 'UserService', 'ResourceService'];
-    function LoginController($location, $rootScope, AuthenticationService, FlashService, UserService, ResourceService){
+    LoginController.$inject = ['$location', '$rootScope', 'AuthenticationService', 'FlashService', 'UserService'];
+    function LoginController($location, $rootScope, AuthenticationService, FlashService, UserService){
         var vm = this;
         vm.login = login;
         vm.NewUserSignUp = NewUserSignUp;
@@ -34,7 +34,7 @@
                         $location.path('/main');
                     });
                     // Get a temporary s3 token for a user once they have logged in
-                    ResourceService.GetS3Token().then(function(res){
+                    UserService.GetS3Token().then(function(res){
                         $rootScope.s3Credentials = {    // store credentials for current session
                             access_key : res.credentials.awsaccessKeyId,
                             secret_key : res.credentials.awssecretKey,

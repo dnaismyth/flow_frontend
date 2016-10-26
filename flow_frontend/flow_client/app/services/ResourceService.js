@@ -14,16 +14,10 @@
     ResourceService.$inject = ['$http'];
     function ResourceService($http) {
         var service = {}
-        service.GetS3Token = GetS3Token;
         service.SendPasswordResetEmail = SendPasswordResetEmail;
         service.FinishPasswordReset = FinishPasswordReset;
         service.CheckUniqueUsername = CheckUniqueUsername;
         return service;
-
-        // Used to retrieve a temporary token for the user to upload media during their logged in session
-        function GetS3Token(){
-            return $http.get('http://localhost:8080/api/resources/s3token').then(handleSuccess, handleError('Error retrieving s3 token.'));
-        }
 
         // Send password reset e-mail to the address provided
         function SendPasswordResetEmail(email){
@@ -37,7 +31,7 @@
 
         // Check that a username is unique to dynamically display during user sign up
         function CheckUniqueUsername(username){
-            return $http.get('http://localhost:8080/api/resources/'+username+'/unique');
+            return $http.get('http://localhost:8080/api/resources/'+username+'/unique').then(handleSuccess, handleError('error calling unique username request.'));
         }
 
         // private functions
