@@ -9,8 +9,9 @@
                 link: function(scope, elm, attr, model){
                     model.$asyncValidators.usernameExists = function(){
 
-                        ResourceService.CheckUniqueUsername(elm.val()).then(function(data){
-                            console.log(data);
+                        ResourceService.CheckUniqueUsername(elm.val()).then(function(response){
+                            console.log(response.data);
+                            model.$setValidity('usernameExists', true);
                         });
 
                         var defer = $q.defer();

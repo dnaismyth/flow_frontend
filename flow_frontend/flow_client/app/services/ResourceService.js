@@ -31,7 +31,7 @@
 
         // Check that a username is unique to dynamically display during user sign up
         function CheckUniqueUsername(username){
-            return $http.get('http://localhost:8080/api/resources/'+username+'/unique').then(handleSuccess, handleError('error calling unique username request.'));
+            return $http.get('http://localhost:8080/api/resources/unique?username=' + username).then(handleSuccess, handleError('error calling unique username request.'));
         }
 
         // private functions
