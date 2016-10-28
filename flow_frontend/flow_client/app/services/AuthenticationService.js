@@ -61,15 +61,15 @@
                 password : password
             }
 
-            $rootScope.encoded = btoa("mediacenter:secret");
+            //$rootScope.encoded = btoa("mediacenter:secret");
 
             var req = {
                 method: 'POST',
                 url: "http://localhost:8080/api/register",
-                headers: {
-                    "Authorization": "Basic " + $rootScope.encoded,
-                    "Content-type": "application/json; charset=utf-8"
-                },
+                // headers: {
+                //     "Authorization": "Basic " + $rootScope.encoded,
+                //     "Content-type": "application/json; charset=utf-8"
+                // },
                 data: $rootScope.signUpRequest
             };
             $http(req).success(function(signUpRequest, response){
@@ -92,6 +92,7 @@
 
         }
 
+        //TODO: only clear bearer token for requests need to be authenticated
         function ClearCredentials(){
             $rootScope.globals = {};
             $cookies.remove('globals')

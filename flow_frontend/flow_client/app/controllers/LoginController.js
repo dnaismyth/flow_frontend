@@ -22,7 +22,7 @@
         };
 
         (function initController(){
-            AuthenticationService.ClearCredentials();
+            //AuthenticationService.ClearCredentials(); //TODO: fix this.  Only use for authenticated requests to reset the Bearer token
         })();
 
         function login(){
