@@ -1,7 +1,7 @@
 (function(){
 //var flowApp = angular.module('flowApp', ['ngResource','ui.router','ngCookies', 'ngStorage']);
 angular
-    .module('flowApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngStorage'])
+    .module('flowApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngStorage', 'ngMessages'])
     .config(config)
     .run(run);
 

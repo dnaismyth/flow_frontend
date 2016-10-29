@@ -11,8 +11,8 @@
 
                         // Check that the username is unique
                         ResourceService.CheckUniqueUsername(elm.val()).then(function(response){
-                            //console.log(response);
-                            if(response === 'OK')
+                            //console.log(response.code);
+                            if(response.code === 'OK')
                                 model.$setValidity('usernameUnique', true);
                             else
                                 model.$setValidity('usernameUnique', false);

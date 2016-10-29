@@ -30,6 +30,8 @@
                             <!--<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />-->
                         </div>
                     </form>
+                    <!-- End Login Form -->
+
                     <table>
                         <tr>
                             <thead><th><a href="#/main">Not a member? <b>Sign up.</b></a></th>
@@ -39,31 +41,48 @@
                 </div>
 
                 <div>
+                    <!-- Begin Signup Form -->
                     <div ng-show="vm.signUp == true" class="login-container col-xs-offset-2">
                         <!-- Form for a new user sign up to provide their username, email, password of choice -->
                         <form name="signup" ng-submit="vm.NewUserSignUp()" role="form">
+
+                            <!-- Username -->
                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-                                <input type="text" name="newUsername" id="newUsername" class="form-control" ng-model="vm.newUsername" placeholder="Username" required username-available="" />
+                                <input type="text" name="newUsername" id="newUsername" class="form-control" ng-model="vm.newUsername" placeholder="Username" required username-available=""
+                                       minlength="4" maxlength="20"/>
                                 <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
                             </div>
-                            <div ng-if="signup.$error.usernameUnique">Username already taken</div>
-                            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-                                <input type="text" name="newName" id="newName" class="form-control" ng-model="vm.newName" placeholder="Name" required  />
-                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                            <div ng-if="signup.$error.usernameUnique">Username is not available</div>
+
+                            <!-- Name -->
+                            <div class="form-group" ng-class="{ 'has-error': form.newName.$dirty && form.newName.$error.required }">
+                                <input type="text" name="newName" id="newName" class="form-control" ng-model="vm.newName" placeholder="Name" required
+                                       maxlength="20"/>
+                                <span ng-show="form.newName.$dirty && form.newName.$error.required" class="help-block">Name is required</span>
                             </div>
+
+                            <!-- E-mail Address -->
                             <div class="form-group" ng-class="{ 'has-error': form.newEmail.$dirty && form.newEmail.$error.required }">
-                                <input type="email" name="newEmail" id="newEmail" class="form-control" ng-model="vm.newEmail" placeholder="E-mail" required email-available="" />
+                                <input type="email" name="newEmail" id="newEmail" class="form-control" ng-model="vm.newEmail" placeholder="E-mail" required email-available=""
+                                       maxlength="64"/>
                                 <span ng-show="form.newEmail.$dirty && form.newEmail.$error.required" class="help-block">E-mail is required</span>
                             </div>
-                            <div ng-if="signup.$error.emailUnique">This e-mail address belongs to an account.</div>
+                            <div ng-if="signup.$error.emailUnique">This e-mail address belongs to an account</div>
+
+
+                            <!-- Password -->
                             <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-                                <input type="password" name="newPassword" id="newPassword" class="form-control" ng-model="vm.newPassword" placeholder="Password" required />
-                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                                <input type="password" name="newPassword" id="newPassword" class="form-control" ng-model="vm.newPassword" placeholder="Password" required
+                                       minlength="6" maxlength="20"/>
+                                <span ng-show="form.newPassword.$dirty && form.newPassword.$error.required" class="help-block">Password is required</span>
                             </div>
+
                             <div class="form-actions">
                                 <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary btn-block"><b>Sign up</b></button>
                             </div>
+
                         </form>
+                        <!-- End Signup Form -->
                     </div>
                 </div>
             </div>

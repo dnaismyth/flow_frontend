@@ -20,9 +20,9 @@
 </head>
 <body>
 
-            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-            <div ng-view></div>
-
+<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
+     ng-if="flash" ng-bind="flash.message"></div>
+<div ng-view></div>
 
 
 <!-- Angular -->
@@ -30,6 +30,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-messages.js"></script>
 <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
 <!-- Storage -->
@@ -39,22 +40,22 @@
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.6.12.min.js"></script>
 
 <title>Strive</title>
-            <script src="app.js"></script>
-            <script src="directives/usernameAvailable.js"></script>
-            <script src="directives/fileDirective.js"></script>
-            <script src="controllers/LoginController.js"></script>
-            <script src="controllers/ProfileController.js"></script>
-            <script src="services/AuthenticationService.js"></script>
-            <script src="services/UserService.js"></script>
-            <script src="services/FlashService.js"></script>
-            <script src="services/UserService.js"></script>
-            <script src="controllers/NavigationController.js"></script>
-            <script src="services/WorkoutFeedService.js"></script>
-            <script src="services/EventService.js"></script>
-            <script src="services/ResourceService.js"></script>
-            <script src="controllers/FeedController.js"></script>
-            <script src="services/WorkoutService.js"></script>
-            <script src="services/MediaService.js"></script>
+<script src="app.js"></script>
+<script src="directives/usernameAvailable.js"></script>
+<script src="directives/fileDirective.js"></script>
+<script src="controllers/LoginController.js"></script>
+<script src="controllers/ProfileController.js"></script>
+<script src="services/AuthenticationService.js"></script>
+<script src="services/UserService.js"></script>
+<script src="services/FlashService.js"></script>
+<script src="services/UserService.js"></script>
+<script src="controllers/NavigationController.js"></script>
+<script src="services/WorkoutFeedService.js"></script>
+<script src="services/EventService.js"></script>
+<script src="services/ResourceService.js"></script>
+<script src="controllers/FeedController.js"></script>
+<script src="services/WorkoutService.js"></script>
+<script src="services/MediaService.js"></script>
 </body>
 </html>
 
