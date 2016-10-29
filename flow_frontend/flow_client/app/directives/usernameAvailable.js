@@ -7,17 +7,19 @@
                 restrict:'AE',
                 require:'ngModel',
                 link: function(scope, elm, attr, model){
-                    model.$asyncValidators.usernameExists = function(){
+                    model.$asyncValidators.usernameUnique = function(){
 
                         ResourceService.CheckUniqueUsername(elm.val()).then(function(response){
                             console.log(response);
-                            if(response === 'USERNAME_TAKEN')
-                                model.$setValidity('usernameExists', true);
+                            if(response === 'OK')
+                                model.$setValidity('usernameUnique', true);
+                            else
+                                model.$setValidity('usernameUnique', false);
                         });
 
                         var defer = $q.defer();
                         $timeout(function(){
-                            model.$setValidity('usernameExists', false);
+                            //model.$setValidity('usernameUnique', false);
                             defer.resolve;
                         }, 1000);
                         return defer.promise;

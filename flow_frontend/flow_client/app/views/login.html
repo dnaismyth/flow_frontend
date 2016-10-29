@@ -46,8 +46,8 @@
                                 <input type="text" name="newUsername" id="newUsername" class="form-control" ng-model="vm.newUsername" placeholder="Username" required username-available="" />
                                 <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
                             </div>
-                            <div ng-if="signup.$pending.usernameExists">checking....</div>
-                            <div ng-if="signup.$error.usernameExists">username exists already</div>
+                            <div ng-if="signup.$pending.usernameUnique"> </div>
+                            <div ng-if="signup.$error.usernameUnique">Username already taken</div>
                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <input type="text" name="newName" id="newName" class="form-control" ng-model="vm.newName" placeholder="Name" required  />
                                 <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
