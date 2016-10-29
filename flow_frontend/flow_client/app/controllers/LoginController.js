@@ -22,7 +22,8 @@
         };
 
         (function initController(){
-            //AuthenticationService.ClearCredentials(); //TODO: fix this.  Only use for authenticated requests to reset the Bearer token
+            if(!vm.signUp)
+                AuthenticationService.ClearCredentials();
         })();
 
         function login(){

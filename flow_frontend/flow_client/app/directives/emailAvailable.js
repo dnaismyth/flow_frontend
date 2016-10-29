@@ -1,26 +1,28 @@
+/**
+ * Created by DN on 2016-10-28.
+ */
 (function(){
     'use strict';
     angular
         .module('flowApp')
-        .directive('usernameAvailable', function(ResourceService, $timeout, $q) {
+        .directive('emailAvailable', function(ResourceService, $timeout, $q) {
             return {
                 restrict:'AE',
                 require:'ngModel',
                 link: function(scope, elm, attr, model){
-                    model.$asyncValidators.usernameUnique = function(){
+                    model.$asyncValidators.emailUnique = function(){
 
-                        // Check that the username is unique
+                        // Check that the e-mail address is unique
                         ResourceService.CheckUniqueUsername(elm.val()).then(function(response){
-                            //console.log(response);
                             if(response === 'OK')
-                                model.$setValidity('usernameUnique', true);
+                                model.$setValidity('emailUnique', true);
                             else
-                                model.$setValidity('usernameUnique', false);
+                                model.$setValidity('emailUnique', false);
                         });
 
                         var defer = $q.defer();
                         $timeout(function(){
-                            //model.$setValidity('usernameUnique', false);
+                            //model.$setValidity('emailUnique', false);
                             defer.resolve;
                         }, 1000);
                         return defer.promise;
