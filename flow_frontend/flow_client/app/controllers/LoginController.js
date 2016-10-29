@@ -12,9 +12,10 @@
     function LoginController($location, $rootScope, AuthenticationService, FlashService, UserService){
         var vm = this;
         vm.login = login;
+        vm.toggleSignupForm = toggleSignupForm;
         vm.NewUserSignUp = NewUserSignUp;
-        vm.signUp = true;
-        vm.signuUpSuccess = false;
+        vm.signUp = false;  // initially, the sign up page will not be shown.  As default a user will be taken to the login screen.
+        vm.signUpSuccess = false;   // boolean to check if a signup has been completed.
 
         // Background image used for login screen only
         vm.bgImage = {
@@ -26,6 +27,7 @@
                 AuthenticationService.ClearCredentials();
         })();
 
+        // Login with existing credentials
         function login(){
             vm.dataLoading = true;
             AuthenticationService.Login(vm.username, vm.password, function(response){
@@ -50,11 +52,22 @@
             });
         };
 
+        // Toggle on and off the display of a sign up form
+        function toggleSignupForm(){
+            if(vm.signUp === false){
+                vm.signUp = true;
+            } else {
+                vm.signUp = false;
+            }
+            console.log("Sign up value : " + vm.signUp);
+        }
+
+        // Sign up a new user
         function NewUserSignUp(){
             vm.dataLoading = true;
             AuthenticationService.SignUp(vm.newUsername, vm.newEmail, vm.newPassword, vm.newName, function(response){
                 if(response === 200){
-                    vm.signupSuccess = true;
+                    vm.signupSuccess = true;    // show success screen
                 } else {
                     //
                 }

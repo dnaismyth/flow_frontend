@@ -14,7 +14,7 @@
 
                         // Check that the e-mail address is unique
                         ResourceService.CheckUniqueUsername(elm.val()).then(function(response){
-                            if(response === 'OK')
+                            if(response.code === 'OK')
                                 model.$setValidity('emailUnique', true);
                             else
                                 model.$setValidity('emailUnique', false);
