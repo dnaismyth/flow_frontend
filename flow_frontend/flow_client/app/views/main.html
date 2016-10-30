@@ -1,8 +1,11 @@
 <!-- Begin Main Container -->
 <div class="container">
-    <div class="row">
+    <div class="row" id="main-nav">
         <div ng-controller="NavigationController as ctrl">
-            <div class="col-sm-2 col-sm-offset-6" style="padding-top:15px">
+            <div class="col-sm-2">
+                <h3><b>STRIVE.</b></h3>
+            </div>
+            <div class="col-sm-2 col-sm-offset-4" style="padding-top:15px">
                 <div>
                     <form id="search_form" name="search_form" ng-submit="ctrl.SearchUsers()" role="form">
                         <div>
@@ -27,16 +30,17 @@
         </div>
     </div>
     <!-- Container to hold main workout submission form -->
-    <div class="row">
+    <div class="row" id="main-midsection">
         <div class="col-sm-3">
             <!-- Container to hold trending users -->
-            <b>Trending users</b>
-
             <div id="trending">
+                <span style="padding:15px; font-size:1.1em;">TRENDING</span>
+                <hr>
 
                 <div ng-repeat="user in vm.trendingUsers">
                     <span ng-bind="user.username"></span>
                     <span ng-bind="user.avatar"></span>
+                    <hr>
                 </div>
             </div>
         </div>

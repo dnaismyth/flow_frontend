@@ -92,9 +92,17 @@ hr{
 /****************************************/
 /* Create a new run: CSS related to from */
 /***************************************/
-#workout{
-    background-color: rgba(244,244,244, 0.56);
+#main-nav{
+    background-color:#222222;
+    color:#ffffff;
+}
+
+#main-midsection{
     margin-top:4%;
+}
+
+#workout, #trending{
+    background-color: rgba(244,244,244, 0.56);
 }
 
 #workout ul{
