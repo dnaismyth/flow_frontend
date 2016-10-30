@@ -1,5 +1,5 @@
 <!-- Begin Main Container -->
-<div class="container">
+<div class="container-fluid">
     <div class="row" id="main-nav">
         <div ng-controller="NavigationController as ctrl">
             <div class="col-sm-2">
@@ -69,34 +69,46 @@
                 </div>-->
                 <!-- Media Fields-->
                 <div class="form-group">
-                    <input type="text" name="workout-description" placeholder="Add a description..." class="form-control"
-                           ng-model="vm.workout.description"/>
-                    <input name="file" type="file" file/>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" name="workout-description" placeholder="Add a description..." class="form-control"
+                                   ng-model="vm.workout.description"/>
+                        </div>
+                    </div>
+
+                    <!-- File -->
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-10">
+                         <span class="btn btn-default btn-file">
+                            Add Image<input type="file" file/>
+                        </span>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
             </form>
-        </div>
+            <!-- Template to hold workouts in feed -->
+            <div class="row" id="feed">
+                <div class="col-sm-12">
+                    <!-- Test this for file input later to use file directive (check setup)-->
+                    <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
+                        <span ng-bind="fw.owner.username"></span><br>
 
-        <div class="col-sm-3"></div>
-    </div>
-    <!-- Template to hold workouts in feed -->
-    <div class="row" id="feed">
-
-        <!-- Test this for file input later to use file directive (check setup)-->
-        <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
-            <span ng-bind="fw.owner.username"></span><br>
-
-            <div>
-                <span ng-bind="fw.fileName"></span>
-            </div>
-            <div><span ng-bind="fw.distance"></span>
-                <span ng-bind="fw.duration"></span>
-                <span ng-bind="fw.address"></span>
-            </div>
-            <div>
-                <span ng-bind="fw.description"></span>
+                        <div>
+                            <span ng-bind="fw.fileName"></span>
+                        </div>
+                        <div><span ng-bind="fw.distance"></span>
+                            <span ng-bind="fw.duration"></span>
+                            <span ng-bind="fw.address"></span>
+                        </div>
+                        <div>
+                            <span ng-bind="fw.description"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
