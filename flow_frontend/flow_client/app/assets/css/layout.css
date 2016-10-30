@@ -3,6 +3,11 @@ html, body, .container {
     height:100%;
 }
 
+hr{
+    border-top: 1px solid #000;
+
+}
+
 /* Fill scope to size of body */
 .ng-scope{
     width:100%;
@@ -58,6 +63,11 @@ html, body, .container {
     height:50px;
 }
 
+.form-control #search_form {
+    width:20%;
+    height:24px;
+}
+
 .form-group input{
     background-color: #bfbfbe;
     padding: 4% 8%;
@@ -76,6 +86,42 @@ html, body, .container {
     background: #6dcff6;
     font-size: 150%;
 }
+
+/* Main Page after logging in (User Feed) */
+
+/****************************************/
+/* Create a new run: CSS related to from */
+/***************************************/
+#workout{
+    background-color: rgba(244,244,244, 0.56);
+    margin-top:4%;
+}
+
+#workout ul{
+    list-style-type:none;
+    padding: 3%;
+}
+
+#workout li {
+    display:inline;
+    padding:3px;
+}
+
+#workout form input{
+    background-color:#ffffff;
+}
+
+input[name="workout-description"]{
+    height:100px;
+    padding:3%;
+}
+
+input[type="file"]{
+    width:20%;
+}
+
+/*********************************************/
+
 
 
 

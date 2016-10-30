@@ -1,83 +1,100 @@
-<nav class="navbar navbar-default row">
-    <div class="container-fluid">
-        <div class="navbar-header">
+<!-- Begin Main Container -->
+<div class="container">
+    <div class="row">
+        <div ng-controller="NavigationController as ctrl">
+            <div class="col-sm-2 col-sm-offset-6" style="padding-top:15px">
+                <div>
+                    <form id="search_form" name="search_form" ng-submit="ctrl.SearchUsers()" role="form">
+                        <div>
+                            <input type="text" name="name" id="name" ng-model="ctrl.name" placeholder="Find a runner..."/>
+                        </div>
+                        <!--<div class="form-actions">-->
+                        <!--<button type="submit" class="btn btn-primary">Search</button>-->
+                        <!--</div>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
             <ul class="nav navbar-nav">
-                <li><a ui-sref="profile">Profile</a></li><!--State Transition on click-->
-                <li><a ui-sref="main">Home</a></li><!--State Transition on click-->
+                <li><a ui-sref="profile">Profile</a></li>
+                <!--State Transition on click-->
+                <li><a ui-sref="main">Home</a></li>
+                <!--State Transition on click-->
                 <li><a ui-sref="settings">Settings</a></li>
                 <li><a ui-sref="login">Login</a></li>
             </ul>
         </div>
     </div>
+    <!-- Container to hold main workout submission form -->
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- Container to hold trending users -->
+            <b>Trending users</b>
 
-    <div ng-controller="NavigationController as ctrl">
-        <h2>Search</h2>
-        <p>Hello user {{userInfo.username}}</p>
-        <form name="search_form" ng-submit="ctrl.SearchUsers()" role="form">
-            <div class="form-group">
-                <label for="name">Username</label>
-                <input type="text" name="name" id="name" class="form-control" ng-model="ctrl.name" required />
+            <div id="trending">
+
+                <div ng-repeat="user in vm.trendingUsers">
+                    <span ng-bind="user.username"></span>
+                    <span ng-bind="user.avatar"></span>
+                </div>
             </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </form>
+        </div>
+        <div class="col-sm-6" id="workout">
+            <form name="workout-form" id="workout-form" ng-submit="vm.CreateWorkout()" role="form">
+                <!-- Running Fields -->
+                <div class="form-inline">
+                    <ul>
+                        <li><input type="text" placeholder="Distance" class="form-control"
+                                   ng-model="vm.workout.distance"
+                                   required/></li>
+                        <li><input type="text" placeholder="Duration" class="form-control"
+                                   ng-model="vm.workout.duration"
+                                   required/></li>
+                        <li><input type="text" placeholder="Location" class="form-control"
+                                   ng-model="vm.workout.location"
+                                   required/></li>
+                    </ul>
+                    <hr>
+                </div>
+                <!-- Run title -->
+                <!--<div class="form-group">
+                    <input type="text" placeholder="Give your run a title" class="form-control"
+                           ng-model="vm.media.caption"
+                           required/>
+                </div>-->
+                <!-- Media Fields-->
+                <div class="form-group">
+                    <input type="text" name="workout-description" placeholder="Add a description..." class="form-control"
+                           ng-model="vm.workout.description"/>
+                    <input name="file" type="file" file/>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-3"></div>
     </div>
-</nav>
+    <!-- Template to hold workouts in feed -->
+    <div class="row" id="feed">
 
-<!-- Container to hold main workout submission form -->
-<div id="workout">
-    <form name="workout_form" ng-submit="vm.CreateWorkout()" role="form">
-        <!-- Run title -->
-        <div class="form-group">
-            <input type="text" placeholder="Give your run a title" class="form-control" ng-model="vm.media.caption" required />
-        </div>
-        <!-- Running Fields -->
-        <div class="form-group">
-            <ul>
-                <li><input type="text" placeholder="Distance" class="form-control" ng-model="vm.workout.distance" required /></li>
-                <li><input type="text" placeholder="Duration" class="form-control" ng-model="vm.workout.duration" required /></li>
-                <li><input type="text" placeholder="Location" class="form-control" ng-model="vm.workout.location" required /></li>
-            </ul>
-        </div>
-        <!-- Media Fields-->
-        <div class="form-group">
-            <input type="text" placeholder="Add a description..." class="form-control" ng-model="vm.workout.description" />
-            <!--<input type="text" ng-model="vm.media.fileName" required />-->
-            <input name="file" type="file" file />
-        </div>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Create</button>
-        </div>
-    </form>
-</div>
-
-<!-- Template to hold workouts in feed -->
-<div id="feed">
-
-    <!-- Test this for file input later to use file directive (check setup)-->
-    <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
+        <!-- Test this for file input later to use file directive (check setup)-->
+        <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
             <span ng-bind="fw.owner.username"></span><br>
-        <div>
-            <span ng-bind="fw.fileName"></span>
-        </div>
-        <div><span ng-bind="fw.distance"></span>
-            <span ng-bind="fw.duration"></span>
-            <span ng-bind="fw.address"></span>
-        </div>
-        <div>
-            <span ng-bind="fw.description"></span>
+
+            <div>
+                <span ng-bind="fw.fileName"></span>
+            </div>
+            <div><span ng-bind="fw.distance"></span>
+                <span ng-bind="fw.duration"></span>
+                <span ng-bind="fw.address"></span>
+            </div>
+            <div>
+                <span ng-bind="fw.description"></span>
+            </div>
         </div>
     </div>
 </div>
-<br>
-<!-- Container to hold trending users -->
-<b>Trending users</b>
-<div id = "trending">
-
-    <div ng-repeat="user in vm.trendingUsers">
-        <span ng-bind="user.username"></span>
-        <span ng-bind="user.avatar"></span>
-    </div>
-
-</div>
+<!-- End Main Container -->
