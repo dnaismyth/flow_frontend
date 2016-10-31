@@ -18,6 +18,7 @@
         service.GetTrendingUsers = GetTrendingUsers;
         service.FindUsersInQuest = FindUsersInQuest;
         service.GetS3Token = GetS3Token;
+        service.FindNotificationsForUser = FindNotificationsForUser;
         return service;
 
         // Search for a user by name, or return all users if name param is empty
@@ -43,6 +44,11 @@
         // Delete the current logged in user
         function Delete() {
             return $http.delete('http://localhost:8080/api/me').then(handleSuccess, handleError('Error deleting user'));
+        }
+
+        // Find notifications for the current logged in user
+        function FindNotificationsForUser(){
+            return $http.get('http://localhost:8080/api/me/notifications').then(handleSuccess, handleError('Error finding notifications for user.'));
         }
 
         // Used to retrieve a temporary token for the user to upload media during their logged in session

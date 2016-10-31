@@ -19,6 +19,7 @@
         vm.AddEventToInterests = AddEventToInterests;
         vm.CreateWorkout = CreateWorkout;
         vm.GetTrendingUsers = GetTrendingUsers;
+        vm.GetUserNotifications = GetUserNotifications;
         vm.userAvatar = $rootScope.userInfo.avatar;
 
         // Return the workouts in the current logged in user feed
@@ -42,6 +43,13 @@
                 vm.added = response;
             })
         };
+
+        // Find notifications for the current logged in user
+        function GetUserNotifications(){
+            UserService.FindNotificationsForUser().then(function(response){
+                vm.notifications = response.data;
+            });
+        }
 
         // Basic create workout
         function CreateWorkout(){
@@ -82,5 +90,6 @@
 
         /* Call to retrieve trending users */
         vm.GetTrendingUsers();
+        
     }
 })();
