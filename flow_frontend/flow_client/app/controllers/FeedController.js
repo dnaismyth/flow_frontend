@@ -19,6 +19,7 @@
         vm.AddEventToInterests = AddEventToInterests;
         vm.CreateWorkout = CreateWorkout;
         vm.GetTrendingUsers = GetTrendingUsers;
+        vm.userAvatar = $rootScope.userInfo.avatar;
 
         // Return the workouts in the current logged in user feed
         // TODO: change page and size, use for testing for now

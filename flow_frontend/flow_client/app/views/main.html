@@ -3,7 +3,7 @@
     <div class="row" id="main-nav">
         <div ng-controller="NavigationController as ctrl">
             <div class="col-sm-2">
-                <h3><b>STRIVE.</b></h3>
+                <a style="color:white; cursor:pointer; text-decoration: none;" ui-sref="main"><h3><b>STRIVE.</b></h3></a>
             </div>
             <div class="col-sm-2 col-sm-offset-4" style="padding-top:15px">
                 <div>
@@ -20,12 +20,9 @@
         </div>
         <div class="col-sm-4">
             <ul class="nav navbar-nav">
-                <li><a ui-sref="profile">Profile</a></li>
-                <!--State Transition on click-->
-                <li><a ui-sref="main">Home</a></li>
-                <!--State Transition on click-->
+                <li><a ui-sref="main">Notifications</a></li>
+                <li><a ui-sref="profile"><img id="avatar" ng-src="{{vm.userAvatar}}"/></a></li>
                 <li><a ui-sref="settings">Settings</a></li>
-                <li><a ui-sref="login">Login</a></li>
             </ul>
         </div>
     </div>

@@ -1,17 +1,16 @@
 html, body, .container {
     font-family: 'Source Sans Pro', sans-serif;
-    height:100%;
+    height: 100%;
 }
 
-hr{
+hr {
     border-top: 1px solid #000;
-
 }
 
 /* Fill scope to size of body */
-.ng-scope{
-    width:100%;
-    height:100%;
+.ng-scope {
+    width: 100%;
+    height: 100%;
 }
 
 /* Fill background screen with login image */
@@ -31,6 +30,7 @@ hr{
     display: table-cell;
     vertical-align: middle;
 }
+
 /******************************/
 
 /************************************/
@@ -44,39 +44,39 @@ hr{
     width: 100%;
     height: 100%;
     padding: 10% 15%;
-    background-color: rgba(244,244,244, 0.56);
+    background-color: rgba(244, 244, 244, 0.56);
     background-size: cover;
-    color:white;
-    text-align:center;
+    color: white;
+    text-align: center;
 }
 
 .login-container form {
-    color:white;
+    color: white;
 }
 
-.login-container table a{
+.login-container table a {
     font-size: 75%;
-    color:white;
+    color: white;
 }
 
 .form-control {
-    height:50px;
+    height: 50px;
 }
 
 .form-control #search_form {
-    width:20%;
-    height:24px;
+    width: 20%;
+    height: 24px;
 }
 
-.form-group input{
+.form-group input {
     background-color: #bfbfbe;
     padding: 4% 8%;
-    font-size:150%;
+    font-size: 150%;
     border: 1px solid white;
 }
 
-.form-group textarea{
-    color:white;
+.form-group textarea {
+    color: white;
 }
 
 .form-actions button {
@@ -92,36 +92,42 @@ hr{
 /****************************************/
 /* Create a new run: CSS related to from */
 /***************************************/
-#main-nav{
-    background-color:#222222;
-    color:#ffffff;
+#main-nav {
+    background-color: #222222;
+    color: #ffffff;
 }
 
-#main-midsection{
-    margin-top:4%;
+#avatar{
+    width:30px;
+    height:30px;
 }
 
-#workout, #trending{
-    background-color: rgba(244,244,244, 0.56);
+#main-midsection {
+    margin-top: 4%;
 }
 
-#workout ul{
-    list-style-type:none;
+#workout, #trending {
+    background-color: rgba(244, 244, 244, 0.56);
+}
+
+#workout ul {
+    list-style-type: none;
     padding: 3%;
+    margin-left:5%;
 }
 
 #workout li {
-    display:inline;
-    padding:3px;
+    display: inline;
+    padding: 3px;
 }
 
-#workout form input{
-    background-color:#ffffff;
+#workout form input {
+    background-color: #ffffff;
 }
 
-input[name="workout-description"]{
-    height:100px;
-    padding:3%;
+input[name="workout-description"] {
+    height: 100px;
+    padding: 3%;
 }
 
 /* Workout File (image) associated with new run/workout */
@@ -129,6 +135,7 @@ input[name="workout-description"]{
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
