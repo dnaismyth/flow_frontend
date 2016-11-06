@@ -21,7 +21,10 @@
         vm.GetTrendingUsers = GetTrendingUsers;
         vm.GetUserNotifications = GetUserNotifications;
         vm.userAvatar = $rootScope.userInfo.avatar;
-
+        vm.media = {
+            caption:"",
+            fileName: ""
+        }
         // Return the workouts in the current logged in user feed
         // TODO: change page and size, use for testing for now
         function GetUserFeed(){
@@ -60,15 +63,17 @@
                 secretAccessKey: $rootScope.s3Credentials.secret_key,
                 sessionToken: $rootScope.s3Credentials.session_token
             });
-            
+
             // Set bucket for uploading to
             var bucket = new AWS.S3({ params: { Bucket: $rootScope.s3Credentials.bucket } });
 
             //TODO: change file name to make unique for user, check size of file first before uploading.
             // Check file exists and try to upload to bucket
-            vm.media.fileName = $scope.file.name;
+            vm.media.caption = "test";
             if($scope.file) {
-                var params = { Key: $scope.file.name, ContentType: $scope.file.type, Body: $scope.file, ServerSideEncryption: 'AES256' };
+                var fileKey = $rootScope.userInfo.id+"/"+$scope.file.name;
+                vm.media.fileName = fileKey;
+                var params = { Key: fileKey, ContentType: $scope.file.type, Body: $scope.file, ServerSideEncryption: 'AES256' };
 
                 bucket.putObject(params, function(err, data) {
                     if (err) {

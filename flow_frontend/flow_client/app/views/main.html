@@ -43,6 +43,12 @@
         </div>
         <div class="col-sm-6" id="workout">
             <form name="workout-form" id="workout-form" ng-submit="vm.CreateWorkout()" role="form">
+                <!-- Run title -->
+                <!--<div class="form-group">-->
+                    <!--<input type="text" placeholder="Give your run a title" class="form-control"-->
+                           <!--ng-model="vm.media.caption"-->
+                           <!--required/>-->
+                <!--</div>-->
                 <!-- Running Fields -->
                 <div class="form-inline">
                     <ul>
@@ -58,12 +64,6 @@
                     </ul>
                     <hr>
                 </div>
-                <!-- Run title -->
-                <!--<div class="form-group">
-                    <input type="text" placeholder="Give your run a title" class="form-control"
-                           ng-model="vm.media.caption"
-                           required/>
-                </div>-->
                 <!-- Media Fields-->
                 <div class="form-group">
                     <div class="row">
@@ -77,7 +77,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-sm-offset-10">
                          <span class="btn btn-default btn-file">
-                            Add Image<input type="file" file/>
+                            Add Image<input type="file" name="file" file/>
                         </span>
                         </div>
                     </div>
@@ -88,6 +88,7 @@
                 </div>
             </form>
             <!-- Template to hold workouts in feed -->
+            <br>
             <div class="row" id="feed">
                 <div class="col-sm-12">
                     <!-- Test this for file input later to use file directive (check setup)-->
@@ -95,7 +96,7 @@
                         <span ng-bind="fw.owner.username"></span><br>
 
                         <div>
-                            <span ng-bind="fw.fileName"></span>
+                            <span ng-bind="fw.media.fileName"></span>
                         </div>
                         <div><span ng-bind="fw.distance"></span>
                             <span ng-bind="fw.duration"></span>
