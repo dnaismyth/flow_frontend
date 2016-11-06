@@ -96,7 +96,7 @@
                         <span ng-bind="fw.owner.username"></span><br>
 
                         <div>
-                            <span ng-bind="fw.media.fileName"></span>
+                            <span> <img ng-src={{fw.media.fileName}} alt={{fw.media.caption}}> </span>
                         </div>
                         <div><span ng-bind="fw.distance"></span>
                             <span ng-bind="fw.duration"></span>
