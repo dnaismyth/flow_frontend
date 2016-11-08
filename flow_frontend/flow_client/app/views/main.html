@@ -45,9 +45,9 @@
             <form name="workout-form" id="workout-form" ng-submit="vm.CreateWorkout()" role="form">
                 <!-- Run title -->
                 <!--<div class="form-group">-->
-                    <!--<input type="text" placeholder="Give your run a title" class="form-control"-->
-                           <!--ng-model="vm.media.caption"-->
-                           <!--required/>-->
+                <!--<input type="text" placeholder="Give your run a title" class="form-control"-->
+                <!--ng-model="vm.media.caption"-->
+                <!--required/>-->
                 <!--</div>-->
                 <!-- Running Fields -->
                 <div class="form-inline">
@@ -93,18 +93,35 @@
                 <div class="col-sm-12">
                     <!-- Test this for file input later to use file directive (check setup)-->
                     <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
-                        <span ng-bind="fw.owner.username"></span><br>
+                        <div class="col-sm-12 col-sm-offset-1">
+                            <span ng-bind="fw.owner.username"></span><br>
+                        </div>
 
-                        <div>
+                        <div class="col-sm-offset-5">
                             <span> <img ng-src={{fw.media.fileName}} alt={{fw.media.caption}}> </span>
                         </div>
-                        <div><span ng-bind="fw.distance"></span>
-                            <span ng-bind="fw.duration"></span>
-                            <span ng-bind="fw.address"></span>
+
+                        <div class="col-sm-offset-1 table-responsive">
+                            <table>
+                                <tr>
+                                    <th>Distance</th>
+                                    <th>Duration</th>
+                                    <th>Location</th>
+                                </tr>
+
+                                <tr>
+                                    <td><span ng-bind="fw.distance"></span></td>
+                                    <td><span ng-bind="fw.duration"></span></td>
+                                    <td><span ng-bind="fw.address"></span></td>
+                                </tr>
+
+                            </table>
                         </div>
-                        <div>
+                        <br>
+                        <div class="col-sm-offset-5">
                             <span ng-bind="fw.description"></span>
                         </div>
+                        <br><br>
                     </div>
                 </div>
             </div>
