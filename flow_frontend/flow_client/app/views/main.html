@@ -102,18 +102,22 @@
                         </div>
 
                         <div class="col-sm-offset-1 table-responsive">
-                            <table>
-                                <tr>
-                                    <th>Distance</th>
-                                    <th>Duration</th>
-                                    <th>Location</th>
-                                </tr>
+                            <table id = "feed-workout">
 
-                                <tr>
-                                    <td><span ng-bind="fw.distance"></span></td>
-                                    <td><span ng-bind="fw.duration"></span></td>
-                                    <td><span ng-bind="fw.address"></span></td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Distance</th>
+                                        <th>Duration</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span ng-bind="fw.distance"></span></td>
+                                        <td><span ng-bind="fw.duration"></span></td>
+                                        <td><span ng-bind="fw.address"></span></td>
+                                    </tr>
+                                </tbody>
 
                             </table>
                         </div>

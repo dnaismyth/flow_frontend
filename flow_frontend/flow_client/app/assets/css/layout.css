@@ -152,6 +152,21 @@ input[name="workout-description"] {
     display: block;
 }
 
+
+/* Table to Display workouts in a user feed */
+#feed-workout {
+    table-layout:fixed;
+    border-spacing: 5px;
+    width:100%;
+    border-collapse: separate;
+}
+
+#feed-workout td, th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
 /*********************************************/
 
 
