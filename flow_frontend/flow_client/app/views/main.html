@@ -1,5 +1,5 @@
 <!-- Begin Main Container -->
-<div class="container-fluid">
+<div class="container container-table">
     <div class="row" id="main-nav">
         <div ng-controller="NavigationController as ctrl">
             <div class="col-sm-2">
@@ -89,12 +89,12 @@
             </form>
             <!-- Template to hold workouts in feed -->
             <br>
-            <div class="row" id="feed">
-                <div class="col-sm-12">
+            <div class="row vertical-center-row" id="feed">
+                <div class="col-sm-11">
                     <!-- Test this for file input later to use file directive (check setup)-->
                     <div ng-repeat="fw in vm.feedWorkout" class="workout_feed">
-                        <div class="col-sm-12 col-sm-offset-1">
-                            <span ng-bind="fw.owner.username"></span><br>
+                        <div class="col-sm-12 col-sm-offset-2">
+                            <b><span ng-bind="fw.owner.username"></span></b><br>
                         </div>
 
                         <div class="col-sm-offset-5">
